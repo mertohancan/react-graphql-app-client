@@ -3,8 +3,7 @@ import {Card, Icon, Image, Label, Button} from 'semantic-ui-react';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
 import posed from 'react-pose';
-
-
+import PropTypes from "prop-types";
 
 const Box = posed.div({
   hoverable: true,
@@ -79,6 +78,21 @@ function commentPost(){
     )
 }
 
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    body: PropTypes.string,
+    createdAt: PropTypes.string,
+    username: PropTypes.string,
+    likeCount: PropTypes.number,
+    commentCount: PropTypes.number,
+    likes: PropTypes.string
+  })
+};
+
+PostCard.defaultProps = {
+  post: "Naber?"
+};
 
 export default PostCard;
 
