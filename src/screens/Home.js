@@ -1,45 +1,26 @@
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { Grid } from 'semantic-ui-react';
 
-import React, {useState} from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { Grid, Divider } from 'semantic-ui-react'
-
-import PostCard from '../components/PostCard'
-
-
-
-
-
-
-
-
-
+import PostCard from '../components/PostCard';
 
 function Home() {
   let posts = '';
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
-  
-  
-  
 
   if (data) {
-    console.log(loading)
-    posts = { data: data.getPosts }
-    
+    posts = { data: data.getPosts };
   }
   return (
     <Grid columns={1}>
       <Grid.Row className="page-title">
         <h1>Recent Posts</h1>
       </Grid.Row>
-    
+
       {loading ? (
-        
         <h1>Loading posts..</h1>
-      ) : 
-      
-      (
-   
+      ) : (
         posts.data &&
         posts.data.map(post => (
           <Grid.Column key={post.id} style={{ marginBottom: 20 }}>
@@ -47,9 +28,8 @@ function Home() {
           </Grid.Column>
         ))
       )}
-
     </Grid>
-  )
+  );
 }
 
 const FETCH_POSTS_QUERY = gql`
@@ -72,6 +52,6 @@ const FETCH_POSTS_QUERY = gql`
       }
     }
   }
-`
+`;
 
 export default Home;
