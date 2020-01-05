@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-// eslint-disable-next-line import/prefer-default-export
 export const useForm = (callback, initialState = {}) => {
   const [values, setValues] = useState(initialState);
 
@@ -19,3 +18,5 @@ export const useForm = (callback, initialState = {}) => {
     values,
   };
 };
+
+export default useForm;
