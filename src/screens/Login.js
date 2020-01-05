@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks/';
-import gql from 'graphql-tag';
+import { LOGIN_USER } from '../queries/entry';
 import { useForm } from '../util/hooks';
 import { AuthContext } from '../context/auth';
 
-function Login() {
+const Login = () => {
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
@@ -60,8 +60,9 @@ function Login() {
           {Object.keys(errors).length > 0 && (
             <div className="ui error message">
               <ul className="list">
-                {Object.values(errors).map(e => {
-                  return <li key={100}>{e}</li>;
+                {Object.values(errors).map((e, i) => {
+                  // eslint-disable-next-line react/no-array-index-key
+                  return <li key={i}>{e}</li>;
                 })}
               </ul>
             </div>
@@ -70,18 +71,6 @@ function Login() {
       )}
     </div>
   );
-}
-
-const LOGIN_USER = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      id
-      email
-      username
-      createdAt
-      token
-    }
-  }
-`;
+};
 
 export default Login;

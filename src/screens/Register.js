@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { REGISTER_USER } from '../queries/entry';
 import { useForm } from '../util/hooks';
 import { AuthContext } from '../context/auth';
 
-function Register() {
+const Register = () => {
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
@@ -78,8 +78,9 @@ function Register() {
           {Object.keys(errors).length > 0 && (
             <div className="ui error message">
               <ul className="list">
-                {Object.values(errors).map(e => {
-                  return <li>{e}</li>;
+                {Object.values(errors).map((e, i) => {
+                  // eslint-disable-next-line react/no-array-index-key
+                  return <li key={i}>{e}</li>;
                 })}
               </ul>
             </div>
@@ -88,30 +89,6 @@ function Register() {
       )}
     </div>
   );
-}
-
-const REGISTER_USER = gql`
-  mutation register(
-    $email: String!
-    $username: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    register(
-      registerInput: {
-        email: $email
-        username: $username
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      username
-      createdAt
-      token
-    }
-  }
-`;
+};
 
 export default Register;
