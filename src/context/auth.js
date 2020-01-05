@@ -7,7 +7,7 @@ const AuthContext = createContext({
   logout: () => {},
 });
 
-function authReducer(state, action) {
+const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -24,24 +24,24 @@ function authReducer(state, action) {
     default:
       return state;
   }
-}
+};
 
-function AuthProvider(props) {
+const AuthProvider = props => {
   const [state, dispatch] = useReducer(authReducer, { user: null });
 
-  function login(userData) {
+  const login = userData => {
     dispatch({
       type: 'LOGİN',
       payload: userData,
     });
-  }
+  };
 
-  function logout() {
+  const logout = () => {
     dispatch({ type: 'LOGOUT' });
-  }
+  };
 
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <AuthContext.Provider value={{ user: state.user, login, logout }} {...props} />;
-}
+};
 
 export { AuthContext, AuthProvider };
