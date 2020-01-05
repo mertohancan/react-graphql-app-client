@@ -19,48 +19,46 @@ const Box = posed.div({
   },
 });
 
-function PostCard({ post: { body, createdAt, id, username, likeCount, commentCount } }) {
-  return (
-    <Box>
-      <Card style={{ margin: 5 }} fluid>
-        <Card.Content>
-          <Image
-            floated="right"
-            size="mini"
-            src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-          />
-          <Card.Header>{username}</Card.Header>
-          <Card.Meta as={Link} to={`/posts/${id}`}>
-            {moment(createdAt).fromNow(true)}
-          </Card.Meta>
-          <Card.Description>{body}</Card.Description>
-        </Card.Content>
+const PostCard = ({ post: { body, createdAt, id, username, likeCount, commentCount } }) => (
+  <Box>
+    <Card style={{ margin: 5 }} fluid>
+      <Card.Content>
+        <Image
+          floated="right"
+          size="mini"
+          src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+        />
+        <Card.Header>{username}</Card.Header>
+        <Card.Meta as={Link} to={`/posts/${id}`}>
+          {moment(createdAt).fromNow(true)}
+        </Card.Meta>
+        <Card.Description>{body}</Card.Description>
+      </Card.Content>
 
-        <Card.Content extra style={{ flexDirection: 'row' }}>
-          <Button as="div" labelPosition="right">
-            <Button color="blue">
-              <Icon name="heart" />
-              Like
-            </Button>
-            <Label as="a" basic color="blue" pointing="left">
-              {likeCount}
-            </Label>
+      <Card.Content extra style={{ flexDirection: 'row' }}>
+        <Button as="div" labelPosition="right">
+          <Button color="blue">
+            <Icon name="heart" />
+            Like
           </Button>
+          <Label as="a" basic color="blue" pointing="left">
+            {likeCount}
+          </Label>
+        </Button>
 
-          <Button as="div" labelPosition="right" style={{ marginLeft: 5 }}>
-            <Button color="blue">
-              <Icon name="comments" />
-              Comment
-            </Button>
-            <Label as="a" basic color="blue" pointing="left">
-              {commentCount}
-            </Label>
+        <Button as="div" labelPosition="right" style={{ marginLeft: 5 }}>
+          <Button color="blue">
+            <Icon name="comments" />
+            Comment
           </Button>
-        </Card.Content>
-      </Card>
-    </Box>
-  );
-}
+          <Label as="a" basic color="blue" pointing="left">
+            {commentCount}
+          </Label>
+        </Button>
+      </Card.Content>
+    </Card>
+  </Box>
+);
 
 PostCard.propTypes = {
   post: PropTypes.shape({
@@ -70,7 +68,7 @@ PostCard.propTypes = {
     username: PropTypes.string,
     likeCount: PropTypes.number,
     commentCount: PropTypes.number,
-    likes: PropTypes.string,
+    likes: PropTypes.array,
   }),
 };
 
