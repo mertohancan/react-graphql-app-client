@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function Header() {
-  const { pathname } = window.location;
-
-  const path = pathname === '/' ? 'home' : pathname.substr(1);
+const Header = () => {
+  const location = useLocation();
+  const path = location.pathname === '/' ? 'home' : location.pathname.substr(1);
   const [activeItem, setActiveItem] = useState(path);
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
@@ -39,6 +38,6 @@ function Header() {
       </Menu.Menu>
     </Menu>
   );
-}
+};
 
 export default Header;
