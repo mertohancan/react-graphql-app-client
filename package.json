@@ -25,7 +25,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "lint": "eslint ./src --cache"
   },
   "browserslist": {
     "production": [
