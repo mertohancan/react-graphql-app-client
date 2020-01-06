@@ -1,3 +1,7 @@
-module.exports = function override(config) {
-  return config;
+module.exports = {
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
 };
