@@ -1,54 +1,47 @@
-import React, {createContext, useReducer} from 'react';
-
+import React, { createContext, useReducer } from 'react';
 
 const AuthContext = createContext({
-    user: null,
-    login: (data) => {},
-    logout: ()=>{}
-})
+  user: null,
+  // eslint-disable-next-line no-unused-vars
+  login: data => {},
+  logout: () => {},
+});
 
+const authReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        ...state,
+        user: action.payload,
+      };
 
-function authReducer(state, action){
-    switch(action.type){
-        case 'LOGIN':
-            return{
-                ...state,
-                user: action.payload
-            }
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: null,
+      };
 
-        case 'LOGOUT':
-              return{
-               ...state,
-               user:null
-             }
+    default:
+      return state;
+  }
+};
 
-        default:
-            return state;
+const AuthProvider = props => {
+  const [state, dispatch] = useReducer(authReducer, { user: null });
 
-    }
-}
+  const login = userData => {
+    dispatch({
+      type: 'LOGİN',
+      payload: userData,
+    });
+  };
 
-function AuthProvider(props){
-    const [state, dispatch] = useReducer(authReducer, {user:null});
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+  };
 
-    function login(userData){
-        dispatch({
-            type: 'LOGİN',
-            payload: userData
-        })
-    }
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <AuthContext.Provider value={{ user: state.user, login, logout }} {...props} />;
+};
 
-    function logout(){
-        dispatch({type: 'LOGOUT'})
-    }
-
-
-    return(
-        <AuthContext.Provider
-            value={{user: state.user, login, logout}}
-            {...props}
-            />
-    )
-}
-
-export {AuthContext, AuthProvider}
+export { AuthContext, AuthProvider };
