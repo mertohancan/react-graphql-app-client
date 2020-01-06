@@ -60,9 +60,8 @@ const Login = () => {
           {Object.keys(errors).length > 0 && (
             <div className="ui error message">
               <ul className="list">
-                {Object.values(errors).map((e, i) => {
-                  // eslint-disable-next-line react/no-array-index-key
-                  return <li key={i}>{e}</li>;
+                {Object.values(errors).map(e => {
+                  return <li key={e}>{e}</li>;
                 })}
               </ul>
             </div>
