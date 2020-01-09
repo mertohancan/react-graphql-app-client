@@ -19,4 +19,4 @@ npm install
 Maybe you want to clone the server
 
 > https://github.com/mertohancan/react-graphql-app-server
-> Just repeat the above steps
+Just repeat the above steps
