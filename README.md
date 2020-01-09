@@ -9,21 +9,14 @@
 
 2.  Install dependencies
 > cd react-graphql-app-client
-npm install or yarn install
+npm install
 
-3. Clone or Download server.
-> git clone https://github.com/mertohancan/react-graphql-app-server.git
+3. Launch project
 
-2.  Install dependencies
-> cd react-graphql-app-server
-npm install or yarn install
-
-4. Launch project
-
-	>npm start or yarn start both of them
+>npm start 
 
 
+Maybe you want to clone the server
 
-
-
-
+> https://github.com/mertohancan/react-graphql-app-server
+> Just repeat the above steps
