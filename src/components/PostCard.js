@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import posed from 'react-pose';
 import PropTypes from 'prop-types';
 
+const images = [
+  'https://semantic-ui.com/images/avatar/large/elliot.jpg',
+  'https://semantic-ui.com/images/avatar/large/joe.jpg',
+  'https://semantic-ui.com/images/avatar/large/ade.jpg',
+  'https://semantic-ui.com/images/avatar/large/justen.jpg',
+  'https://semantic-ui.com/images/avatar2/large/kristy.png',
+];
+
 const Box = posed.div({
   hoverable: true,
   pressable: true,
@@ -19,15 +27,15 @@ const Box = posed.div({
   },
 });
 
+const getRandom = max => {
+  return images[Math.floor(Math.random() * Math.floor(max))];
+};
+
 const PostCard = ({ post: { body, createdAt, id, username, likeCount, commentCount } }) => (
   <Box>
     <Card style={{ margin: 5 }} fluid>
       <Card.Content>
-        <Image
-          floated="right"
-          size="mini"
-          src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-        />
+        <Image floated="right" size="mini" src={getRandom(5)} />
         <Card.Header>{username}</Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
           {moment(createdAt).fromNow(true)}
