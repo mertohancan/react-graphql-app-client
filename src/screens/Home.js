@@ -1,9 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid } from 'semantic-ui-react';
+import styled from 'styled-components';
 import FETCH_POSTS_QUERY from '../queries/fetch';
-
 import PostCard from '../components/PostCard';
+
+const Title = styled.h1`
+  font-size: 2.5em;
+  color: black;
+`;
 
 const Home = () => {
   let posts = '';
@@ -15,7 +20,7 @@ const Home = () => {
   return (
     <Grid columns={1}>
       <Grid.Row className="page-title">
-        <h1>Recent Posts</h1>
+        <Title>Recent Posts</Title>
       </Grid.Row>
 
       {loading ? (
