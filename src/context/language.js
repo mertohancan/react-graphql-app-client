@@ -8,6 +8,7 @@ export const LanguageContext = createContext({
 });
 
 export function LanguageProvider(props) {
+  const { children } = props;
   const languageContext = useContext(LanguageContext);
   const [language, setLanguage] = useState(languageContext.language);
   const [dictionary, setDictionary] = useState(languageContext.dictionary);
@@ -21,7 +22,7 @@ export function LanguageProvider(props) {
     },
   };
 
-  return <LanguageContext.Provider value={provider}>{props.children}</LanguageContext.Provider>;
+  return <LanguageContext.Provider value={provider}>{children}</LanguageContext.Provider>;
 }
 
 export function Text(props) {
