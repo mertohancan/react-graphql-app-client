@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import FETCH_POSTS_QUERY from '../queries/fetch';
 import PostCard from '../components/PostCard';
+import { Text } from '../context/language';
 
 const Title = styled.h1`
   font-size: 2.5em;
@@ -20,7 +21,9 @@ const Home = () => {
   return (
     <Grid columns={1}>
       <Grid.Row className="page-title">
-        <Title>Recent Posts</Title>
+        <Title>
+          <Text tid="recentPost" />
+        </Title>
       </Grid.Row>
 
       {loading ? (

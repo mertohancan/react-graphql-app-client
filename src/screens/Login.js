@@ -4,8 +4,9 @@ import { useMutation } from '@apollo/react-hooks/';
 import { LOGIN_USER } from '../queries/entry';
 import { useForm } from '../util/hooks';
 import { AuthContext } from '../context/auth';
+import { Text } from '../context/language';
 
-const Login = () => {
+const Login = props => {
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
@@ -17,6 +18,8 @@ const Login = () => {
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       context.login(userData);
+      console.log(userData);
+      props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -36,7 +39,7 @@ const Login = () => {
         <div>
           <Form onSubmit={onSubmit}>
             <Form.Input
-              label="Kullanıcı Adı"
+              label={<Text tid="username" />}
               placeholder="Kullanıcı adınızı girin."
               name="username"
               value={values.username}
