@@ -1,10 +1,6 @@
 const tr = {
-  recentPost: 'Decent Post',
-  exploreHeader: 'Keşfet',
-  welcomeDescription: 'React Context API ile çok dil destekli web sitesi örneği',
-  clickMe: 'Bana tıkla',
-  aboutMe: 'Yazar hakkinda daha fazlabilgi için..',
-  buttonClicked: 'Butona tıkladın!',
+  recentPost: 'Letzte Beiträge',
+  loading: 'Beladung..',
 };
 
 export default tr;

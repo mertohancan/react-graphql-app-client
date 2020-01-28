@@ -27,7 +27,9 @@ const Home = () => {
       </Grid.Row>
 
       {loading ? (
-        <h1>Loading posts..</h1>
+        <h1>
+          <Text tid="loading" />
+        </h1>
       ) : (
         posts.data &&
         posts.data.map(post => (
